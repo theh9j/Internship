@@ -15,7 +15,7 @@ public class FaceGridData : MonoBehaviour
         float localX = (gridPosition.x - offset) * cellSize;
         float localZ = (gridPosition.y - offset) * cellSize;
 
-        Vector3 localPosition = new Vector3(localX, 0.04f, localZ);
+        Vector3 localPosition = new Vector3(localX, 0.08f, localZ);
 
         return transform.TransformPoint(localPosition);
     }

@@ -1,125 +1,53 @@
 {
   "gridSize": 6,
-  "optimalSteps": 13,
+  "optimalSteps": 9,
   "cells": [
-    {
-      "arrowId": 1,
-      "face": "Front",
-      "x": 1,
-      "y": 1,
-      "direction": "Right",
-      "segmentType": "Body"
-    },
-    {
-      "arrowId": 1,
-      "face": "Front",
-      "x": 2,
-      "y": 1,
-      "direction": "Right",
-      "segmentType": "Corner"
-    },
-    {
-      "arrowId": 1,
-      "face": "Front",
-      "x": 2,
-      "y": 2,
-      "direction": "Down",
-      "segmentType": "Body"
-    },
-    {
-      "arrowId": 1,
-      "face": "Front",
-      "x": 2,
-      "y": 3,
-      "direction": "Down",
-      "segmentType": "Head"
-    },
+    { "arrowId": 1, "face": "Front", "x": 0, "y": 2, "direction": "Right", "segmentType": "Body" },
+    { "arrowId": 1, "face": "Front", "x": 1, "y": 2, "direction": "Right", "segmentType": "Body" },
+    { "arrowId": 1, "face": "Front", "x": 2, "y": 2, "direction": "Up", "segmentType": "Corner" },
+    { "arrowId": 1, "face": "Front", "x": 2, "y": 3, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 1, "face": "Front", "x": 2, "y": 4, "direction": "Up", "segmentType": "Head" },
 
-    {
-      "arrowId": 2,
-      "face": "Front",
-      "x": 5,
-      "y": 2,
-      "direction": "Right",
-      "segmentType": "Head"
-    },
+    { "arrowId": 2, "face": "Front", "x": 5, "y": 5, "direction": "Down", "segmentType": "Body" },
+    { "arrowId": 2, "face": "Front", "x": 5, "y": 4, "direction": "Down", "segmentType": "Body" },
+    { "arrowId": 2, "face": "Front", "x": 5, "y": 3, "direction": "Down", "segmentType": "Head" },
 
-    {
-      "arrowId": 3,
-      "face": "Front",
-      "x": 4,
-      "y": 5,
-      "direction": "Left",
-      "segmentType": "Body"
-    },
-    {
-      "arrowId": 3,
-      "face": "Front",
-      "x": 3,
-      "y": 5,
-      "direction": "Left",
-      "segmentType": "Head"
-    },
+    { "arrowId": 3, "face": "Top", "x": 0, "y": 4, "direction": "Right", "segmentType": "Body" },
+    { "arrowId": 3, "face": "Top", "x": 1, "y": 4, "direction": "Right", "segmentType": "Body" },
+    { "arrowId": 3, "face": "Top", "x": 2, "y": 4, "direction": "Right", "segmentType": "Body" },
+    { "arrowId": 3, "face": "Top", "x": 3, "y": 4, "direction": "Right", "segmentType": "Head" },
 
-    {
-      "arrowId": 4,
-      "face": "Front",
-      "x": 0,
-      "y": 4,
-      "direction": "Up",
-      "segmentType": "Body"
-    },
-    {
-      "arrowId": 4,
-      "face": "Front",
-      "x": 0,
-      "y": 5,
-      "direction": "Up",
-      "segmentType": "Head"
-    },
+    { "arrowId": 4, "face": "Top", "x": 5, "y": 1, "direction": "Left", "segmentType": "Body" },
+    { "arrowId": 4, "face": "Top", "x": 4, "y": 1, "direction": "Down", "segmentType": "Corner" },
+    { "arrowId": 4, "face": "Top", "x": 4, "y": 0, "direction": "Down", "segmentType": "Head" },
 
-    {
-      "arrowId": 5,
-      "face": "Front",
-      "x": 5,
-      "y": 0,
-      "direction": "Down",
-      "segmentType": "Head"
-    },
+    { "arrowId": 5, "face": "Right", "x": 1, "y": 0, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 5, "face": "Right", "x": 1, "y": 1, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 5, "face": "Right", "x": 1, "y": 2, "direction": "Right", "segmentType": "Corner" },
+    { "arrowId": 5, "face": "Right", "x": 2, "y": 2, "direction": "Right", "segmentType": "Body" },
+    { "arrowId": 5, "face": "Right", "x": 3, "y": 2, "direction": "Right", "segmentType": "Head" },
 
-    {
-      "arrowId": 6,
-      "face": "Front",
-      "x": 3,
-      "y": 3,
-      "direction": "Right",
-      "segmentType": "Body"
-    },
-    {
-      "arrowId": 6,
-      "face": "Front",
-      "x": 4,
-      "y": 3,
-      "direction": "Right",
-      "segmentType": "Head"
-    },
+    { "arrowId": 6, "face": "Left", "x": 5, "y": 5, "direction": "Left", "segmentType": "Body" },
+    { "arrowId": 6, "face": "Left", "x": 4, "y": 5, "direction": "Left", "segmentType": "Body" },
+    { "arrowId": 6, "face": "Left", "x": 3, "y": 5, "direction": "Down", "segmentType": "Corner" },
+    { "arrowId": 6, "face": "Left", "x": 3, "y": 4, "direction": "Down", "segmentType": "Body" },
+    { "arrowId": 6, "face": "Left", "x": 3, "y": 3, "direction": "Down", "segmentType": "Head" },
 
-    {
-      "arrowId": 7,
-      "face": "Front",
-      "x": 1,
-      "y": 5,
-      "direction": "Left",
-      "segmentType": "Head"
-    },
+    { "arrowId": 7, "face": "Back", "x": 0, "y": 0, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 7, "face": "Back", "x": 0, "y": 1, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 7, "face": "Back", "x": 0, "y": 2, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 7, "face": "Back", "x": 0, "y": 3, "direction": "Up", "segmentType": "Head" },
 
-    {
-      "arrowId": 8,
-      "face": "Front",
-      "x": 2,
-      "y": 0,
-      "direction": "Up",
-      "segmentType": "Head"
-    }
+    { "arrowId": 8, "face": "Bottom", "x": 4, "y": 0, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 8, "face": "Bottom", "x": 4, "y": 1, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 8, "face": "Bottom", "x": 4, "y": 2, "direction": "Left", "segmentType": "Corner" },
+    { "arrowId": 8, "face": "Bottom", "x": 3, "y": 2, "direction": "Left", "segmentType": "Body" },
+    { "arrowId": 8, "face": "Bottom", "x": 2, "y": 2, "direction": "Left", "segmentType": "Head" },
+
+    { "arrowId": 9, "face": "Front", "x": 3, "y": 0, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 9, "face": "Front", "x": 3, "y": 1, "direction": "Up", "segmentType": "Body" },
+    { "arrowId": 9, "face": "Front", "x": 3, "y": 2, "direction": "Right", "segmentType": "Corner" },
+    { "arrowId": 9, "face": "Front", "x": 4, "y": 2, "direction": "Right", "segmentType": "Body" },
+    { "arrowId": 9, "face": "Front", "x": 5, "y": 2, "direction": "Right", "segmentType": "Head" }
   ]
 }

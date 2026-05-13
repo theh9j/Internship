@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour
     public GridManager gridManager;
     public GridView gridView;
 
+    public FaceGridGenerator[] faceGridGenerators;
+
     [Header("Level Files")]
     public string[] levelFiles =
     {
@@ -14,6 +16,20 @@ public class LevelManager : MonoBehaviour
         "level_02",
         "level_03"
     };
+
+    private void RegenerateFaceGrids(int gridSize)
+    {
+        foreach (FaceGridGenerator generator in faceGridGenerators)
+        {
+            if (generator == null)
+            {
+                Debug.LogWarning("Missing FaceGridGenerator reference.");
+                continue;
+            }
+
+            generator.SetGridSize(gridSize);
+        }
+    }
 
     public void LoadLevel(int index)
     {
@@ -37,6 +53,7 @@ public class LevelManager : MonoBehaviour
         LevelData levelData = ConvertJsonToLevelData(jsonLevel);
 
         gridManager.LoadBoard(levelData);
+        RegenerateFaceGrids(levelData.gridSize);
         gridView.Rebuild(gridManager.GetBoard(), levelData.gridSize);
     }
 

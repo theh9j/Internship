@@ -57,20 +57,46 @@ public class GridView : MonoBehaviour
 
         GameObject prefab = GetPrefab(data.segmentType);
 
+        Vector3 position = faceGrid.GetWorldPosition(cell.position);
+
+        Quaternion faceRotation = faceGrid.GetWorldRotation();
+
+        Quaternion quadFixRotation = Quaternion.Euler(90f, 0f, 0f);
+
+        Quaternion directionRotation =
+            Quaternion.Euler(0f, GetRotationAngle(data.direction), 0f);
+
+        Quaternion finalRotation =
+            faceRotation * directionRotation * quadFixRotation;
+
         GameObject visual = Instantiate(
             prefab,
-            faceGrid.GetWorldPosition(cell.position),
-            faceGrid.GetWorldRotation(),
+            position,
+            finalRotation,
             arrowRoot
         );
 
+        float cubeSize = faceGrid.cubeTransform.localScale.x;
+        float cellSize = cubeSize / faceGrid.gridSize;
+
+        visual.transform.localScale = Vector3.one * (cellSize * 0.9f);
+
         visual.name = $"Arrow_{data.arrowId}_{data.segmentType}_{cell.face}_{cell.position.x}_{cell.position.y}";
 
-        Quaternion faceRotation = faceGrid.GetWorldRotation();
-        Quaternion quadFixRotation = Quaternion.Euler(90f, 0f, 0f);
-        Quaternion directionRotation = Quaternion.Euler(0f, GetRotationAngle(data.direction), 0f);
+        CellView cellView = visual.GetComponent<CellView>();
+        if (cellView == null)
+        {
+            cellView = visual.AddComponent<CellView>();
+        }
+        cellView.cell = cell;
 
-        visual.transform.rotation = faceRotation * directionRotation * quadFixRotation;
+        BoxCollider boxCollider = visual.GetComponent<BoxCollider>();
+        if (boxCollider == null)
+        {
+            boxCollider = visual.AddComponent<BoxCollider>();
+        }
+
+        visual.layer = LayerMask.NameToLayer("Clickable");
 
         spawnedVisuals.Add(visual);
     }
