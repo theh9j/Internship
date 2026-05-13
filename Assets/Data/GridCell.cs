@@ -18,18 +18,16 @@ public struct GridCell
             return false;
 
         GridCell other = (GridCell)obj;
-
         return face == other.face && position == other.position;
     }
 
     public override int GetHashCode()
     {
-        return ((int)face * 397) ^
-               position.GetHashCode();
+        return face.GetHashCode() ^ position.GetHashCode();
     }
 
     public override string ToString()
     {
-        return $"{face} {position}";
+        return $"{face}({position.x},{position.y})";
     }
 }

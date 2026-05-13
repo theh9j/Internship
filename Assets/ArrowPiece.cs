@@ -6,8 +6,7 @@ using UnityEngine;
 public class ArrowPiece : MonoBehaviour
 {
     [Header("Arrow Data")]
-    public List<GridCell> occupiedCells =
-        new List<GridCell>();
+    public List<GridCell> occupiedCells = new List<GridCell>();
 
     public GridCell headCell;
 

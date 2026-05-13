@@ -1,0 +1,57 @@
+{
+  "gridSize": 5,
+  "optimalSteps": 4,
+  "cells": [
+    {
+      "arrowId": 1,
+      "face": "Front",
+      "x": 0,
+      "y": 1,
+      "direction": "Left",
+      "segmentType": "Body"
+    },
+    {
+      "arrowId": 1,
+      "face": "Front",
+      "x": 0,
+      "y": 0,
+      "direction": "Left",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 2,
+      "face": "Front",
+      "x": 2,
+      "y": 2,
+      "direction": "Up",
+      "segmentType": "Body"
+    },
+    {
+      "arrowId": 2,
+      "face": "Front",
+      "x": 2,
+      "y": 3,
+      "direction": "Up",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 3,
+      "face": "Front",
+      "x": 4,
+      "y": 2,
+      "direction": "Right",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 4,
+      "face": "Front",
+      "x": 1,
+      "y": 4,
+      "direction": "Down",
+      "segmentType": "Head"
+    }
+  ]
+}

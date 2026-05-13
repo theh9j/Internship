@@ -1,0 +1,125 @@
+{
+  "gridSize": 6,
+  "optimalSteps": 13,
+  "cells": [
+    {
+      "arrowId": 1,
+      "face": "Front",
+      "x": 1,
+      "y": 1,
+      "direction": "Right",
+      "segmentType": "Body"
+    },
+    {
+      "arrowId": 1,
+      "face": "Front",
+      "x": 2,
+      "y": 1,
+      "direction": "Right",
+      "segmentType": "Corner"
+    },
+    {
+      "arrowId": 1,
+      "face": "Front",
+      "x": 2,
+      "y": 2,
+      "direction": "Down",
+      "segmentType": "Body"
+    },
+    {
+      "arrowId": 1,
+      "face": "Front",
+      "x": 2,
+      "y": 3,
+      "direction": "Down",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 2,
+      "face": "Front",
+      "x": 5,
+      "y": 2,
+      "direction": "Right",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 3,
+      "face": "Front",
+      "x": 4,
+      "y": 5,
+      "direction": "Left",
+      "segmentType": "Body"
+    },
+    {
+      "arrowId": 3,
+      "face": "Front",
+      "x": 3,
+      "y": 5,
+      "direction": "Left",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 4,
+      "face": "Front",
+      "x": 0,
+      "y": 4,
+      "direction": "Up",
+      "segmentType": "Body"
+    },
+    {
+      "arrowId": 4,
+      "face": "Front",
+      "x": 0,
+      "y": 5,
+      "direction": "Up",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 5,
+      "face": "Front",
+      "x": 5,
+      "y": 0,
+      "direction": "Down",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 6,
+      "face": "Front",
+      "x": 3,
+      "y": 3,
+      "direction": "Right",
+      "segmentType": "Body"
+    },
+    {
+      "arrowId": 6,
+      "face": "Front",
+      "x": 4,
+      "y": 3,
+      "direction": "Right",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 7,
+      "face": "Front",
+      "x": 1,
+      "y": 5,
+      "direction": "Left",
+      "segmentType": "Head"
+    },
+
+    {
+      "arrowId": 8,
+      "face": "Front",
+      "x": 2,
+      "y": 0,
+      "direction": "Up",
+      "segmentType": "Head"
+    }
+  ]
+}
