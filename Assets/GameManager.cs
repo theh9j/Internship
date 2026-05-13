@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     public GridManager gridManager;
     public LevelManager levelManager;
+    public UIManager uiManager;
 
     [Header("State")]
     public int currentLevelIndex = 0;
@@ -15,12 +17,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Instance = this;
     }
 
@@ -35,9 +31,11 @@ public class GameManager : MonoBehaviour
         moveCount = 0;
         isLevelComplete = false;
 
-        levelManager.LoadLevel(currentLevelIndex);
+        uiManager.ShowWinPanel(false);
+        uiManager.UpdateLevel(currentLevelIndex + 1);
+        uiManager.UpdateMoves(moveCount);
 
-        Debug.Log($"Loaded level {currentLevelIndex + 1}");
+        levelManager.LoadLevel(currentLevelIndex);
     }
 
     public void OnCellClicked(GridCell cell)
@@ -51,37 +49,34 @@ public class GameManager : MonoBehaviour
             return;
 
         moveCount++;
-
-        Debug.Log($"Move Count: {moveCount}");
+        uiManager.UpdateMoves(moveCount);
 
         if (gridManager.IsWin())
         {
-            CompleteLevel();
+            StartCoroutine(CompleteLevelRoutine());
         }
     }
 
-    private void CompleteLevel()
+    private IEnumerator CompleteLevelRoutine()
     {
         isLevelComplete = true;
 
-        Debug.Log("Level Complete!");
+        uiManager.ShowWinPanel(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        int nextLevelIndex = currentLevelIndex + 1;
+
+        if (nextLevelIndex >= levelManager.LevelCount)
+        {
+            nextLevelIndex = 0;
+        }
+
+        LoadLevel(nextLevelIndex);
     }
 
     public void RestartLevel()
     {
         LoadLevel(currentLevelIndex);
-    }
-
-    public void NextLevel()
-    {
-        int nextLevelIndex = currentLevelIndex + 1;
-
-        if (nextLevelIndex >= levelManager.LevelCount)
-        {
-            Debug.Log("No more levels. Restarting from level 1.");
-            nextLevelIndex = 0;
-        }
-
-        LoadLevel(nextLevelIndex);
     }
 }
