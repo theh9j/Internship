@@ -5,6 +5,7 @@ public class FaceGridGenerator : MonoBehaviour
     [Header("References")]
     public Transform cubeTransform;
     public GameObject tilePrefab;
+    public CubeFace face;
 
     [Header("Grid Settings")]
     public int gridSize = 5;
@@ -54,6 +55,9 @@ public class FaceGridGenerator : MonoBehaviour
                     tileThickness,
                     tileSize
                 );
+
+                CellView cellView = tile.AddComponent<CellView>();
+                cellView.cell = new GridCell(face, new Vector2Int(x, y));
             }
         }
     }

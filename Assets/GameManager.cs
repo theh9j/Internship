@@ -9,54 +9,79 @@ public class GameManager : MonoBehaviour
     public LevelManager levelManager;
 
     [Header("State")]
-    public int moveCount = 0;
     public int currentLevelIndex = 0;
+    public int moveCount = 0;
+    public bool isLevelComplete = false;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
     }
 
     private void Start()
     {
-        LoadCurrentLevel();
+        LoadLevel(currentLevelIndex);
     }
 
-    public void LoadCurrentLevel()
+    public void LoadLevel(int levelIndex)
     {
+        currentLevelIndex = levelIndex;
         moveCount = 0;
+        isLevelComplete = false;
+
         levelManager.LoadLevel(currentLevelIndex);
+
+        Debug.Log($"Loaded level {currentLevelIndex + 1}");
     }
 
-    public void OnArrowClicked(ArrowPiece arrow)
+    public void OnCellClicked(GridCell cell)
     {
-        bool removed = gridManager.TryRemoveArrow(arrow);
+        if (isLevelComplete)
+            return;
+
+        bool removed = gridManager.TryRemoveArrow(cell);
 
         if (!removed)
             return;
 
         moveCount++;
 
+        Debug.Log($"Move Count: {moveCount}");
+
         if (gridManager.IsWin())
         {
-            Debug.Log("Level Complete!");
+            CompleteLevel();
         }
+    }
+
+    private void CompleteLevel()
+    {
+        isLevelComplete = true;
+
+        Debug.Log("Level Complete!");
     }
 
     public void RestartLevel()
     {
-        LoadCurrentLevel();
+        LoadLevel(currentLevelIndex);
     }
 
     public void NextLevel()
     {
-        currentLevelIndex++;
+        int nextLevelIndex = currentLevelIndex + 1;
 
-        if (currentLevelIndex >= levelManager.levels.Length)
+        if (nextLevelIndex >= levelManager.LevelCount)
         {
-            currentLevelIndex = 0;
+            Debug.Log("No more levels. Restarting from level 1.");
+            nextLevelIndex = 0;
         }
 
-        LoadCurrentLevel();
+        LoadLevel(nextLevelIndex);
     }
 }

@@ -78,4 +78,9 @@ public class LevelManager : MonoBehaviour
         Debug.LogError($"Invalid enum value: {value}");
         return default;
     }
+
+    public int LevelCount
+    {
+        get { return levelFiles.Length; }
+    }
 }
