@@ -5,6 +5,7 @@ public class LevelManager : MonoBehaviour
 {
     [Header("References")]
     public GridManager gridManager;
+    public GridView gridView;
 
     [Header("Level Files")]
     public string[] levelFiles =
@@ -36,6 +37,7 @@ public class LevelManager : MonoBehaviour
         LevelData levelData = ConvertJsonToLevelData(jsonLevel);
 
         gridManager.LoadBoard(levelData);
+        gridView.Rebuild(gridManager.GetBoard(), levelData.gridSize);
     }
 
     private LevelData ConvertJsonToLevelData(JsonLevelData json)
@@ -82,5 +84,10 @@ public class LevelManager : MonoBehaviour
     public int LevelCount
     {
         get { return levelFiles.Length; }
+    }
+
+    public void RefreshView()
+    {
+        gridView.Rebuild(gridManager.GetBoard(), gridManager.GridSize);
     }
 }

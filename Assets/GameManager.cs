@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
             return;
 
         bool removed = gridManager.TryRemoveArrow(cell);
+        levelManager.RefreshView();
 
         if (!removed)
             return;
