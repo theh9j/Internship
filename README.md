@@ -76,6 +76,7 @@ Visual/Anim:
 - Điểu chỉnh rotation, orientation và vị trí của arrow theo từng phần
 - Điều chỉnh size của arrow tùy vào grid size (v.d Grid 5x5 arrow sẽ to hơn)
 - Support camera orbit vs cả camera zoom
+- Anim đơn giản ease-out khi Arrow thoát
 
 UI:
 - Hiện Level, Move count
@@ -88,4 +89,4 @@ Misc:
 
 4. Những gì chưa làm được
 - Mặc dù Arrow có thể chạy qua các mặt của Cube nma nó khá là buggy khi GridManager đọc ko biết là 2 cái arrow có thực sự nối nhau không
-- Chưa có arrow anim và arrow feedback khi bị chặn
+- Anim không support corner anim, basically toàn bộ arrow di chuyển theo một hướng dù có corner piece
