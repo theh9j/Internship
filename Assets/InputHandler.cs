@@ -1,30 +1,28 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
-public class InputHandler : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
-    [Header("References")]
     public Camera mainCamera;
     public GameManager gameManager;
-
-    [Header("Settings")]
     public LayerMask clickableLayer;
-
-    private Mouse mouse;
-
-    private void Awake()
-    {
-        mouse = Mouse.current;
-    }
 
     private void Update()
     {
-        if (mouse == null)
-            return;
-
-        if (mouse.leftButton.wasPressedThisFrame)
+        if (Touchscreen.current != null)
         {
-            HandleClick(mouse.position.ReadValue());
+            TouchControl touch = Touchscreen.current.primaryTouch;
+
+            if (touch.press.wasReleasedThisFrame)
+            {
+                HandleClick(touch.position.ReadValue());
+            }
+        }
+
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            HandleClick(Mouse.current.position.ReadValue());
         }
     }
 
@@ -37,15 +35,10 @@ public class InputHandler : MonoBehaviour
             CellView cellView = hit.collider.GetComponent<CellView>();
 
             if (cellView == null)
-            {
                 cellView = hit.collider.GetComponentInParent<CellView>();
-            }
 
             if (cellView == null)
-            {
-                Debug.Log("Clicked object has no CellView.");
                 return;
-            }
 
             gameManager.OnCellClicked(cellView.cell);
         }

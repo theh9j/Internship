@@ -3,22 +3,16 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("References")]
     public Transform cameraTransform;
 
-    [Header("Zoom")]
-    public float zoomSpeed = 2f;
+    public float rotationSpeed = 0.15f;
+    public float zoomSpeed = 0.01f;
+
     public float minZoom = 4f;
     public float maxZoom = 12f;
 
-    private float rotationSmoothness = 10f;
-    private float zoomSmoothness = 10f;
-
-    private float rotationSpeed = 0.2f;
-    private float minVerticalAngle = -80f;
-    private float maxVerticalAngle = 80f;
-
-    private Mouse mouse;
+    public float rotationSmoothness = 10f;
+    public float zoomSmoothness = 10f;
 
     private Vector2 currentRotation;
     private Vector2 targetRotation;
@@ -26,10 +20,7 @@ public class CameraController : MonoBehaviour
     private float currentZoom;
     private float targetZoom;
 
-    private void Awake()
-    {
-        mouse = Mouse.current;
-    }
+    private float previousPinchDistance;
 
     private void Start()
     {
@@ -42,50 +33,78 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (mouse == null)
-            return;
-
-        HandleRotation();
-        HandleZoom();
-
+        HandleTouchInput();
+        HandleMouseInput();
         SmoothMovement();
     }
 
-    private void HandleRotation()
+    private void HandleTouchInput()
     {
-        if (mouse.rightButton.isPressed)
+        if (Touchscreen.current == null)
+            return;
+
+        var touches = Touchscreen.current.touches;
+
+        bool touch0Pressed = touches[0].press.isPressed;
+        bool touch1Pressed = touches[1].press.isPressed;
+
+        if (touch0Pressed && !touch1Pressed)
         {
-            Vector2 delta = mouse.delta.ReadValue();
+            Vector2 delta = touches[0].delta.ReadValue();
 
             targetRotation.x -= delta.y * rotationSpeed;
             targetRotation.y += delta.x * rotationSpeed;
+        }
 
-            targetRotation.x = Mathf.Clamp(
-                targetRotation.x,
-                minVerticalAngle,
-                maxVerticalAngle
-            );
+        if (touch0Pressed && touch1Pressed)
+        {
+            Vector2 pos0 = touches[0].position.ReadValue();
+            Vector2 pos1 = touches[1].position.ReadValue();
+
+            float currentDistance = Vector2.Distance(pos0, pos1);
+
+            if (previousPinchDistance > 0)
+            {
+                float difference = currentDistance - previousPinchDistance;
+
+                targetZoom -= difference * zoomSpeed;
+                targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+            }
+
+            previousPinchDistance = currentDistance;
+        }
+        else
+        {
+            previousPinchDistance = 0f;
         }
     }
 
-    private void HandleZoom()
+    private void HandleMouseInput()
     {
-        float scroll = mouse.scroll.ReadValue().y;
+        if (Mouse.current == null)
+            return;
+
+        if (Mouse.current.rightButton.isPressed)
+        {
+            Vector2 delta = Mouse.current.delta.ReadValue();
+
+            targetRotation.x -= delta.y * rotationSpeed;
+            targetRotation.y += delta.x * rotationSpeed;
+        }
+
+        float scroll = Mouse.current.scroll.ReadValue().y;
 
         if (Mathf.Abs(scroll) > 0.01f)
         {
-            targetZoom -= scroll * zoomSpeed;
-
-            targetZoom = Mathf.Clamp(
-                targetZoom,
-                minZoom,
-                maxZoom
-            );
+            targetZoom -= scroll * 0.05f;
+            targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
         }
     }
 
     private void SmoothMovement()
     {
+        targetRotation.x = Mathf.Clamp(targetRotation.x, -80f, 80f);
+
         currentRotation = Vector2.Lerp(
             currentRotation,
             targetRotation,
@@ -104,7 +123,6 @@ public class CameraController : MonoBehaviour
             zoomSmoothness * Time.deltaTime
         );
 
-        cameraTransform.localPosition =
-            new Vector3(0f, 0f, -currentZoom);
+        cameraTransform.localPosition = new Vector3(0, 0, -currentZoom);
     }
 }

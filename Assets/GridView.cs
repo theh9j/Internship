@@ -63,11 +63,9 @@ public class GridView : MonoBehaviour
 
         Quaternion quadFixRotation = Quaternion.Euler(90f, 0f, 0f);
 
-        Quaternion directionRotation =
-            Quaternion.Euler(0f, GetRotationAngle(data.direction), 0f);
+        Quaternion directionRotation = Quaternion.Euler(0f, GetRotationAngle(data.direction), 0f);
 
-        Quaternion finalRotation =
-            faceRotation * directionRotation * quadFixRotation;
+        Quaternion finalRotation = faceRotation * directionRotation * quadFixRotation;
 
         GameObject visual = Instantiate(
             prefab,
